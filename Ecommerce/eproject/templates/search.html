@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+
+        Welcome to Green Bazar. Where you can buy Vegetables & Fruits..
+
+{% endblock %}
+
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block content %}
+
+<div>
+  <p class="text-center my-search">You have searched:<b>"{{query}}"</b></p>
+</div>
+ <div class="container">
+        <div class="row mx-auto">
+            {% for product in products %}
+            <div class="my-bottom-margin col-9 col-sm-4 col-md-4 col-md-4 col-lg-4">
+                <div class="card text-center" style="min-width:16rem;">
+                    <a href="{{product.get_url}}"><img class="card-img-top my-image card-size" src="{{product.image.url}}" alt="{{product.name}} " > </a>
+
+                <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.price}}</p>
+                </div>
+                </div>
+            </div>
+            {% empty %}
+                <div class="row mx-auto">
+                    <p class=" text-center my-search">Search result not found.</p>
+
+                </div>
+            {% endfor %}
+        </div>
+</div>
+{% endblock %}
